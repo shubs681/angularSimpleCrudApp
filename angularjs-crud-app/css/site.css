@@ -1,0 +1,14 @@
+#item-list td, #item-list th {
+	text-align: center;
+}
+.page-title{
+    width: 75%;
+    float: left;
+}
+.search-box{
+    width: 20%;
+    float: left;
+}
+.page-header {
+    padding-bottom: 50px;
+}

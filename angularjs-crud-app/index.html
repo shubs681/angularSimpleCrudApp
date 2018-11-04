@@ -1,0 +1,63 @@
+<!doctype html>
+<html ng-app="shoppingApp">
+<head>
+  <title>Shopping List</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="css/bootstrap.css">  
+  <link rel="stylesheet" href="css/site.css">
+</head>
+<body>
+  <div class="container" ng-controller="ItemListController">
+
+    <div class="row">
+      <div class="page-header">
+        <div class="page-title">
+          <h1>List of Items</h1>
+        </div> 
+        <div class="search-box">
+          <input type="search" ng-model="search" placeholder="Search">
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <table id="item-list" class="table table-striped">
+        <thead>
+          <tr>            
+            <th>Product</th>
+            <th>Quantity</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="item in items|filter:search">        
+            <td><strong>{{ item.product }}</strong></td>
+            <td>{{ item.quantity }}</td>
+            <td>
+              <button class="btn btn-warning btn-small" ng-click="editItem($index)">
+                <i class="icon-pencil icon-white"></i> Edit
+              </button>
+              <button class="btn btn-danger btn-small" ng-click="deleteItem($index)">
+                <i class="icon-trash icon-white"></i> Delete
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <form class="row form-inline" name="modifyItems">
+      <input type="text" ng-model="item.product" placeholder="Product" required>
+      <input type="number" ng-model="item.quantity" placeholder="Quantity" class="input-small" required>
+      <button ng-hide="edit" class="btn btn-success" ng-disabled="modifyItems.$invalid" ng-click="addItem()">
+        <i class="icon-plus icon-white"></i> Add
+      </button>
+      <button ng-show="edit" class="btn btn-success" ng-disabled="modifyItems.$invalid" ng-click="saveChanges()">
+        <i class="icon-ok icon-white"></i> Save
+      </button>
+    </form>
+  </div>
+  <script src="lib/jquery.min.js"></script>
+  <script src="lib/angular.min.js"></script>  
+  <script src="app/controller.js"></script>
+</body>
+</html>
